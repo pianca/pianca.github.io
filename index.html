@@ -24,7 +24,8 @@
     CefMessageReceiver.handle(requestToCS);
   }
 
-  function cefCallback(resp) {
+  function cefCallback(respFromCS) {
+    let resp = JSON.parse(respFromCS);
     console.log(resp);
     document.getElementById("result").innerHTML = resp.Type + ': [' + resp.Data + '] from driver ' + resp.Driver;
   }
