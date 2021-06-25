@@ -24,9 +24,9 @@
     CefMessageReceiver.handle(requestToCS);
   }
 
-  function cefCallback(responseFromCS) {
+  function cefCallback(resp) {
     console.log(responseFromCS);
-    document.getElementById("result").innerHTML = JSON.stringify(responseFromCS);
+    document.getElementById("result").innerHTML = resp.Type + ': ['  resp.Data + '] rom driver ' + resp.Driver;
   }
 </script>
 <body>
