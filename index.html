@@ -15,9 +15,9 @@
     CefSharp.BindObjectAsync({ NotifyIfAlreadyBound: true, IgnoreCache: true},'CefMessageReceiver')
     let requestToCS = {
       Id: 'this is a guid',
-      Type: EmoMessageType.Command,
-      Driver: EmoDrivers.Display,
-      Name: EmoCommands.Hello,
+      Type: 'command',
+      Driver: 'display',
+      Name: 'hello',
       Data: "hello from js"
     };
     console.log(responseFromCS);
