@@ -7,24 +7,31 @@
 
 <script>
   function CEF_PageLoaded(){
-    document.getElementById("result").innerHTML = "OK!";
+    document.getElementById("result").innerHTML = "CEF_PageLoaded";
   }
 
-  function Bottone(){
-    document.getElementById("result").innerHTML = "prova";
-    CefSharp.BindObjectAsync({ NotifyIfAlreadyBound: true, IgnoreCache: true},'cefMessageReceiver')
-    var jsonString = { 'cmd': 'prova', 'params': {}, callback: 'callBackBottone'};
-    cefMessageReceiver.handle(JSON.stringify(jsonString));
+  function Bottone() {
+    document.getElementById("result").innerHTML = "bottone";
+    CefSharp.BindObjectAsync({ NotifyIfAlreadyBound: true, IgnoreCache: true},'CefMessageReceiver')
+    let requestToCS = {
+      Id: 'this is a guid',
+      Type: EmoMessageType.Command,
+      Driver: EmoDrivers.Display,
+      Name: EmoCommands.Hello,
+      Data: "hello from js"
+    };
+    console.log(responseFromCS);
+    cefMessageReceiver.handle(requestToCS);
   }
 
-  function callBackBottone(resp){
-    document.getElementById("result").innerHTML = resp;
+  function cefCallback(responseFromCS) {
+    console.log(responseFromCS);
+    document.getElementById("result").innerHTML = JSON.stringify(responseFromCS);
   }
-
-
 </script>
 <body>
   <span id="result">...</span>
+  <br>
   <button onclick="Bottone()">test</button>
 </body>
 </html>
