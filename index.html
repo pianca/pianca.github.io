@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<script>
+  function CEF_PageLoaded(){
+    document.getElementById("result").innerHTML = "OK!";
+  }
+
+  function Bottone(){
+    document.getElementById("result").innerHTML = "prova";
+    CefSharp.BindObjectAsync({ NotifyIfAlreadyBound: true, IgnoreCache: true},'cefMessageReceiver')
+    var jsonString = { 'cmd': 'prova', 'params': {}, callback: 'callBackBottone'};
+    cefMessageReceiver.handle(JSON.stringify(jsonString));
+  }
+
+  function callBackBottone(resp){
+    document.getElementById("result").innerHTML = resp;
+  }
+
+
+</script>
+<body>
+  <span id="result">...</span>
+  <button onclick="Bottone()">test</button>
+</body>
+</html>
